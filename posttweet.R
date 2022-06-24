@@ -3,8 +3,8 @@ library(mongolite)
 
 connection_string = Sys.getenv("MONGO_CONNECTION_STRING")
 
-mv <- mongo(collection = Sys.getenv("MONGO_COLLECTION_NAME"), # Creating collection
-               db = Sys.getenv("MONGO_DB_NAME"), # Creating DataBase
+mv <- mongo(collection = Sys.getenv("MONGO_COLLECTION_NAME"), 
+               db = Sys.getenv("MONGO_DB_NAME"), 
                url = connection_string, 
                verbose = TRUE)
 data <- mv$find()
@@ -19,10 +19,9 @@ samp_word <- sample(hashtag, 1)
 
 ## Status Message
 
-status_details <- paste0(Sys.Date(),"\n\n Film terpopuler minggu ini adalah ", data[1,5], " oleh ", data[1,6], ".\nInfo detail film dapat dilihat di ", data[1,7],".",
+status_details <- paste0(Sys.Date(),"\n\n Film terpopuler minggu ini adalah ", data[1,5], " oleh ", data[1,6], ".\nInfo detail film dapat dilihat di ", data[1,7],".\n",
                          "#",samp_word, " #topmovie", "\n")
 
-# Publish to Twitter
 library(rtweet)
 
 ## Create Twitter token
