@@ -39,24 +39,11 @@ for(i in 1:5){
 ### Save to MongoDB ###
 library(mongolite)
 
-connection_string = "mongodb+srv://ronafreya:ronahehe@cluster0.zg8xckw.mongodb.net/?retryWrites=true&w=majority"
+connection_string = Sys.getenv("MONGO_CONNECTION_STRING")
 
-mv <- mongo(collection = "testing", # Creating collection
-                            db = "sample_dataset_R", # Creating DataBase
+mv <- mongo(collection = Sys.getenv("MONGO_COLLECTION_NAME"), # Creating collection
+                            db = Sys.getenv("MONGO_DB_NAME"), # Creating DataBase
                             url = connection_string, 
                             verbose = TRUE)
 
-ndata <- mv$count()
-if (ndata == 0){
-  mv$insert(movie)
-} else {
-  mv$drop()
-  mv$insert(movie)
-}
-
-
-
-
-
-
-
+mv$insert(movie)
