@@ -26,8 +26,8 @@ jobs:
         run: Rscript -e 'install.packages("mongolite", dependencies = TRUE)'
       - name: Install rtweet package
         run: Rscript -e 'install.packages("rtweet", dependencies = TRUE)'
-      - name: Install dplyr package
-        run: Rscript -e 'install.packages("dplyr", dependencies = TRUE)'
+      - name: Install tidyverse package
+        run: Rscript -e 'install.packages("tidyverse", dependencies = TRUE)'
       - name: Scrape youtube chart and insert into mongo
         run: Rscript scraping.R
       - name: Tweet top videos on youtube
