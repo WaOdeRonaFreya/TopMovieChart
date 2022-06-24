@@ -1,13 +1,14 @@
 ### Connect to MongoDB ###
 library(mongolite)
 
-connection_string = "mongodb+srv://ronafreya:ronahehe@cluster0.zg8xckw.mongodb.net/?retryWrites=true&w=majority"
+connection_string = Sys.getenv("MONGO_CONNECTION_STRING")
 
-mv <- mongo(collection = "testing", # Creating collection
-               db = "sample_dataset_R", # Creating DataBase
+mv <- mongo(collection = Sys.getenv("MONGO_COLLECTION_NAME"), # Creating collection
+               db = Sys.getenv("MONGO_DB_NAME"), # Creating DataBase
                url = connection_string, 
                verbose = TRUE)
 data <- mv$find()
+data <- tail(data, 5)
 
 ### Post on Twitter ###
 
@@ -27,10 +28,10 @@ library(rtweet)
 ## Create Twitter token
 frx <- rtweet::create_token(
   app = "BOTTwitterMDS",
-  consumer_key =    "3PhlxQmGkFX27OYq082mEhgGX",
-  consumer_secret = "cIZdb8PQ5MtRlHeXA4JoQd1e5o788MTdBkAg3ex9snYRQQ8vAu",
-  access_token =    "1504313492949528591-KbK4GdDlqOUeOXmAUMnADoGIpQKwZn",
-  access_secret =   "353XSV5A2hIFPA7HKpxcSa0JkmliiOUTGmSgOAPP32YFd"
+  consumer_key =    Sys.getenv("TWITTER_API_KEY"), 
+  consumer_secret = Sys.getenv("TWITTER_API_KEY_SECRET"),
+  access_token =    Sys.getenv("TWITTER_ACCESS_TOKEN"),
+  access_secret = Sys.getenv("TWITTER_ACCESS_TOKEN_SECRET")
 )
 
 
