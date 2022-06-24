@@ -26,7 +26,7 @@ status_details <- paste0(Sys.Date(),"\n\n Film terpopuler minggu ini adalah ", d
 library(rtweet)
 
 ## Create Twitter token
-mv <- rtweet::create_token(
+mvtoken <- rtweet::create_token(
   app = "BOTTwitterMDS",
   consumer_key =    Sys.getenv("TWITTER_API_KEY"), 
   consumer_secret = Sys.getenv("TWITTER_API_KEY_SECRET"),
@@ -38,4 +38,4 @@ mv <- rtweet::create_token(
 ## Post Twitter
 rtweet::post_tweet(
   status = status_details,
-  token = mv)
+  token = mvtoken)
